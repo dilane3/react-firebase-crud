@@ -34,3 +34,11 @@
   font-weight: 600;
   font-family: "Poppins-Bold";
 }
+
+.items {
+  width: 100%;
+  height: calc(100% - 102px);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}

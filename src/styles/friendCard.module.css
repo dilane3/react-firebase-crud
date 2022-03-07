@@ -1,0 +1,46 @@
+/* Css Module for Friend card */
+
+.friendCard {
+  width: calc(100% - 40px);
+  height: auto;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #cacaca;
+}
+
+.friendCardImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  font-size: 22px;
+  font-family: "Poppins-Bold";
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.friendCardName {
+  font-size: 16px;
+  font-family: "Poppins-Medium";
+  margin-left: 10px;
+  width: calc(100% - 150px);
+}
+
+.friendCard > div {
+  margin-left: auto;
+}
+
+.friendCardBtnDelete {
+  width: auto;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: #e00432;
+  color: #fff;
+  font-size: 14px;
+  font-family: "Poppins-Medium";
+  border: 0;
+}
