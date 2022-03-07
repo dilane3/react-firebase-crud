@@ -5,8 +5,8 @@ const AddFriendEditor = () => {
   const [newFriendName, setNewFriendName] = useState("")
 
   // Some handlers
-  const handleChangeName = () => {
-    // To do
+  const handleChangeName = (name) => {
+    setNewFriendName(name)
   }
 
   const handleAddFriend = () => {
@@ -15,7 +15,12 @@ const AddFriendEditor = () => {
 
   return (
     <section className={style.editor}>
-      <input className={style.editorInput} type="text" placeholder="Give a name here..." />
+      <input 
+        className={style.editorInput} 
+        type="text" 
+        placeholder="Give a name here..." 
+        onChange={(e) => handleChangeName(e.target.value)}  
+      />
 
       <button className={style.editorBtnAdd}>Add</button>
     </section>
