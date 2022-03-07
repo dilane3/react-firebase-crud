@@ -44,3 +44,7 @@
   font-family: "Poppins-Medium";
   border: 0;
 }
+
+.friendCardBtnDelete:hover {
+  cursor: pointer;
+}
