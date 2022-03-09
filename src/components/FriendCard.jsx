@@ -1,21 +1,43 @@
-import React, { useContext } from "react"
+import React, { useRef, useState } from "react"
 import style from '../styles/friendCard.module.css'
-import { deleteFriend } from '../api/friends/friend'
-import { friendsContext } from '../globalState/contexts/friendContext'
+import { changeProfilePhoto, deleteFriend } from '../api/friends/friend'
 
 const FriendCard = ({ data }) => {
-  const { color, name, id } = data
+  const { color, name, id, image } = data
 
-  // Get global state
-  const { deleteFriend: globalyDeleteFriend } = useContext(friendsContext)
+  // Ref section
+  const inputRef = useRef()
 
   const handleDeleteFriend = async () => {
     await deleteFriend(id)
   }
 
+  const handleUpload = (e) => {
+    const profilImage = e.target.files[0]
+
+    changeProfilePhoto(profilImage, id)
+  }
+
+  const handleOpenFileStorage = () => {
+    inputRef.current.click()
+  }
+
   return (
     <article className={style.friendCard}>
-      <span style={{backgroundColor: color}} className={style.friendCardImage}>{ name[0].toUpperCase() }</span>
+      {
+        image ? (
+          <img className={style.friendCardImage} src={image} alt="profil" onClick={handleOpenFileStorage}/>
+        ):(
+          <span style={{backgroundColor: color}} className={style.friendCardImage} onClick={handleOpenFileStorage}>{ name[0].toUpperCase() }</span>
+        )
+      }
+      <input 
+        ref={inputRef} 
+        type="file" 
+        hidden 
+        onChange={handleUpload}  
+        accept="image/*"
+      />
       <span className={style.friendCardName}>{ name[0].toUpperCase() + name.substr(1) }</span>
 
       <div>
