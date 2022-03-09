@@ -13,11 +13,7 @@ const FriendsList = () => {
 
   // Get friends from the server
   const fetchFriendsData = async () => {
-    const data = await getFriends()
-
-    console.log(addFriends)
-
-    addFriends(data)
+    await getFriends(addFriends)
   }
 
   return (

@@ -11,8 +11,6 @@ const FriendCard = ({ data }) => {
 
   const handleDeleteFriend = async () => {
     await deleteFriend(id)
-
-    globalyDeleteFriend(id)
   }
 
   return (

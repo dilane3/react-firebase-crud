@@ -16,9 +16,7 @@ const AddFriendEditor = () => {
   }
 
   const handleAddFriend = async () => {
-    const newFriend = await createFriend(newFriendName)
-
-    addFriend(newFriend.data())
+    await createFriend(newFriendName)
 
     setNewFriendName("")
   }

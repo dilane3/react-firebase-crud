@@ -1,5 +1,5 @@
 import { db } from '../../firebase'
-import { addDoc, collection, getDocs, getDoc, doc, deleteDoc } from 'firebase/firestore'
+import { addDoc, collection, getDoc, doc, deleteDoc, onSnapshot, query } from 'firebase/firestore'
 
 const friendsCollectionRef = collection(db, "friends")
 const COLORS = [
@@ -17,25 +17,17 @@ const COLORS = [
 
 // Operations with firebase
 
-const getFriends = async () => {
-  const data = await getDocs(friendsCollectionRef)
-
-  const friends = data.docs.map(doc => ({ ...doc.data(), id: doc.id }))
-
-  return friends
+const getFriends = async (addFriends) => {
+  onSnapshot(query(friendsCollectionRef), (snapshot) => {
+    addFriends(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})))
+  })
 }
 
 const createFriend = async (name) => {
   if (name) {
     const color = COLORS[Math.floor(Math.random() * COLORS.length)]
 
-    const newFriend = await addDoc(friendsCollectionRef, { name, color })
-
-    const friendDoc = doc(db, "friends", newFriend.id)
-
-    return (
-      await getDoc(friendDoc)
-    ) 
+    await addDoc(friendsCollectionRef, { name, color })
   }
 }
 
